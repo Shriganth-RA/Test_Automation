@@ -37,7 +37,50 @@ describe("test automation website", () => {
 
         cy.get('input#end-date').type("2025-10-20").should('have.value', '2025-10-20');
 
-        //Footer links
+        cy.get('button.submit-btn').click();
+    
+        // Pagination web table
+        cy.get('#productTable input[type="checkbox"]').then(($checkboxes) => {
+            // Check all boxes
+            for (let i = 0; i < $checkboxes.length; i++) {
+                cy.get('#productTable input[type="checkbox"]').eq(i).click();
+            }
+        })
+
+        // Navigate to the next page
+        cy.get('#pagination a').contains('2').click();
+        cy.get('#productTable input[type="checkbox"]').then(($checkboxes) => {
+            // Check all boxes
+            for (let i = 0; i < $checkboxes.length; i++) {
+                cy.get('#productTable input[type="checkbox"]').eq(i).click();
+            }
+        })
+
+        // Navigate to the next page
+        cy.get('#pagination a').contains('3').click();
+        cy.get('#productTable input[type="checkbox"]').then(($checkboxes) => {
+            // Check all boxes
+            for (let i = 0; i < $checkboxes.length; i++) {
+                cy.get('#productTable input[type="checkbox"]').eq(i).click();
+            }
+        })
+
+        // Navigate to the next page
+        cy.get('#pagination a').contains('4').click();
+        cy.get('#productTable input[type="checkbox"]').then(($checkboxes) => {
+            // Check all boxes
+            for (let i = 0; i < $checkboxes.length; i++) {
+                cy.get('#productTable input[type="checkbox"]').eq(i).click();
+            }
+        })
+
+        // Form
+        cy.get('#section1 #input1').type("Lorem ipsum").should('have.value', 'Lorem ipsum');
+        cy.get('#btn1').trigger('mouseover').click();
+        cy.get('#section2 #input2').type("Lorem ipsum").should('have.value', 'Lorem ipsum');
+        cy.get('#btn2').trigger('mouseover').click();
+        cy.get('#section3 #input3').type("Lorem ipsum").should('have.value', 'Lorem ipsum');
+        cy.get('#btn3').trigger('mouseover').click();
         
     })
 })
