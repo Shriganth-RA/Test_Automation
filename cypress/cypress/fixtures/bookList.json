@@ -1,0 +1,14 @@
+[
+  {
+    "bookName": "Learn Selenium",
+    "author": "Amit",
+    "subject": "Selenium",
+    "price": "300"
+  },
+  {
+    "bookName": "Learn Java",
+    "author": "Mukesh",
+    "subject": "Java",
+    "price": "500"
+  }
+]

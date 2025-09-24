@@ -7,33 +7,38 @@ describe("test automation website", () => {
 // ----------------------------------------------------------------------------------------
         
         // Validate the Name feild
-        cy.get('#name').type("Sathish")
-                            .should('have.value', 'Sathish');
+        const name = "Sathish";
+        cy.get('#name').type(name)
+                            .should('have.value', name);
 
 // ----------------------------------------------------------------------------------------
         
         // Validate the Email feild
-        cy.get('#email').type("sathish@gmail.com")
-                            .should('have.value', 'sathish@gmail.com');
+        const email = "sathish@gmail.com";
+        cy.get('#email').type(email)
+                            .should('have.value', email);
 
 // ----------------------------------------------------------------------------------------
         
         // Validate the Contact feild
-        cy.get('#phone').type("8941236719")
-                            .should('have.value', '8941236719');
+        const phone = "8941236719";
+        cy.get('#phone').type(phone)
+                            .should('have.value', phone);
 
 // ----------------------------------------------------------------------------------------
         
         // Validate the Address feild
-        cy.get('#textarea').type("123, Gandhi road")
-                            .should('have.value', '123, Gandhi road');
+        const address = "123, Gandhi road";
+        cy.get('#textarea').type(address)
+                            .should('have.value', address);
 
 // ----------------------------------------------------------------------------------------
         
         // Validate the Gender button
-        cy.get('#male').click()
+        const gender = "male"
+        cy.get(`#${gender}`).click()
                             .should('be.checked')
-                                .should('have.value', 'male');
+                                .should('have.value', gender);
 
 // ----------------------------------------------------------------------------------------
         
@@ -43,6 +48,7 @@ describe("test automation website", () => {
 
 // ----------------------------------------------------------------------------------------
     
+        // const country = ""
         cy.get('select').get('#country')
                             .select('India')
                                 .should('have.value', 'india');
@@ -75,11 +81,13 @@ describe("test automation website", () => {
 
 // ----------------------------------------------------------------------------------------
     
-        cy.get('input#start-date').type("2025-10-10")
-                                        .should('have.value', '2025-10-10');
+        const start_date = "2025-10-10";
+        const end_date = "2025-10-20";
+        cy.get('input#start-date').type(start_date)
+                                        .should('have.value', start_date);
 
-        cy.get('input#end-date').type("2025-10-20")
-                                        .should('have.value', '2025-10-20');
+        cy.get('input#end-date').type(end_date)
+                                        .should('have.value', end_date);
 
         cy.get('button.submit-btn').click();
 
@@ -104,14 +112,16 @@ describe("test automation website", () => {
         })
 
 // ----------------------------------------------------------------------------------------
-
+       
         // Static web table
-        const bookList = [
-            {bookName: 'Learn Selenium', author: 'Amit', subject: 'Selenium', price: '300'},
-            {bookName: 'Learn Java', author: 'Mukesh', subject: 'Java', price: '500'},
-        ]
+        cy.fixture('BookList.json').then((bookList) => {
+            cy.verifyTableCells(bookList);
+        })
 
-        cy.verifyTableCells(bookList);
+// ----------------------------------------------------------------------------------------
+
+        // Dynamic web table
+        cy.verifyTaskTableDynamic();
 
 // ----------------------------------------------------------------------------------------
     
@@ -153,17 +163,24 @@ describe("test automation website", () => {
 // ----------------------------------------------------------------------------------------
 
         // Form
-        cy.get('#section1 #input1').type("Lorem ipsum")
-                                        .should('have.value', 'Lorem ipsum');
+        const para = "Lorem ipsum";
+        cy.get('#section1 #input1').type(para)
+                                        .should('have.value', para);
         cy.get('#btn1').trigger('mouseover').click();
 
-        cy.get('#section2 #input2').type("Lorem ipsum")
-                                        .should('have.value', 'Lorem ipsum');
+        cy.get('#section2 #input2').type(para)
+                                        .should('have.value', para);
         cy.get('#btn2').trigger('mouseover').click();
 
-        cy.get('#section3 #input3').type("Lorem ipsum")
-                                        .should('have.value', 'Lorem ipsum');
+        cy.get('#section3 #input3').type(para)
+                                        .should('have.value', para);
         cy.get('#btn3').trigger('mouseover').click();
+
+// ----------------------------------------------------------------------------------------
+
+        // Tabs
+        cy.get('form[name="wikipedia"] input[type="text"]').type("Cypress");
+
 
 // ----------------------------------------------------------------------------------------
 
